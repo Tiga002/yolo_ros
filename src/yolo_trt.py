@@ -1,12 +1,18 @@
 from __future__ import print_function
 
+import os
 import ctypes
 import time
 import sys
-sys.path.append('../')
-
 import argparse
+
+import rospy
 import rospkg
+pack = rospkg.RosPack()
+pack_path = pack.get_path("yolo_ros")
+sys.path.append(pack_path + "/utils")
+
+
 import numpy as np
 import cv2
 # from PIL import Image
@@ -14,7 +20,7 @@ import tensorrt as trt
 import pycuda.driver as cuda
 import pycuda.autoinit
 
-from utils.helpers import *
+from helpers import *
 #from utils.helpers import *
 
 class HostDeviceMem(object):

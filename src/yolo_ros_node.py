@@ -1,13 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import print_function
 import os
 import time
 import sys
-sys.path.append('../')
 
 import rospy
 import rospkg
+pack_path = rospkg.RosPack().get_path("yolo_ros")
+sys.path.append(pack_path)
+
 from vision_msgs.msg import BoundingBox2D
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
@@ -48,11 +50,11 @@ class YoloNode(object):
         rospack = rospkg.RosPack()
         package_path = rospack.get_path("yolo_ros")
         self.video_topic = rospy.get_param("/video_topic", "/dummy_image_topic")
-        self.model = rospy.get_param("/model", "yolov4-480")
+        self.model = rospy.get_param("/model", "yolov4-416")
         self.model_path = rospy.get_param(
             "/model_path", package_path + "/models/")
         self.category_num = rospy.get_param("/category_number", 2)
-        self.input_shape = rospy.get_param("/input_shape", "480")
+        self.input_shape = rospy.get_param("/input_shape", "416")
         self.conf_th = rospy.get_param("/confidence_threshold", 0.5)
         self.show_img = rospy.get_param("/show_image", False)
         self.namesfile = rospy.get_param("/namesfile_path", package_path+ "/cfg/obj.names")

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import print_function
 
@@ -20,7 +20,7 @@ class image_converter:
         self.publish_rate = rospy.get_param("~publish_rate", 100)
         rospack = rospkg.RosPack()
         self.package_path = rospack.get_path("yolo_ros")
-        self.test_image_path = rospy.get_param("~test_img_path", self.package_path+"/data/1_0000001.jpg")
+        self.test_image_path = rospy.get_param("~test_img_path", self.package_path+"/data/20.jpg")
 
     def run(self):
         rate = rospy.Rate(self.publish_rate)

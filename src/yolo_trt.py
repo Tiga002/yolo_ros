@@ -1,12 +1,15 @@
+#!/usr/bin/env python3
 from __future__ import print_function
 
 import ctypes
 import time
 import sys
-sys.path.append('../')
 
 import argparse
 import rospkg
+pack_path = rospkg.RosPack().get_path("yolo_ros")
+sys.path.append(pack_path)
+
 import numpy as np
 import cv2
 # from PIL import Image
